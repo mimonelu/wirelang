@@ -1,0 +1,99 @@
+$margin: 4px;
+$bgColor: #ffffff;
+$fgColor: #000000;
+
+.wl-container {
+  font-family: monospace;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  margin: 0 auto;
+  text-size-adjust: 100%;
+}
+.wl-container *,
+.wl-container * > * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.wl-upper > .wl-label {
+  font-size: large;
+}
+.wl-upper.wl-level-0 > .wl-label {
+  font-size: xx-large;
+}
+.wl-upper.wl-level-1 > .wl-label {
+  font-size: x-large;
+}
+
+.wl-underline {
+  background-image: repeating-linear-gradient(-45deg, mix($bgColor, $fgColor, 87.5%), mix($bgColor, $fgColor, 87.5%) 4px, mix($bgColor, $fgColor, 93.75%) 4px, mix($bgColor, $fgColor, 93.75%) 8px);
+}
+.wl-underline > .wl-label {
+  text-decoration: underline;
+}
+
+.wl-node .wl-label {
+  margin-bottom: $margin;
+  word-break: break-all;
+}
+.wl-label:last-child {
+  margin-bottom: 0;
+}
+
+.wl-description {
+  display: block;
+  font-size: small;
+  margin-top: $margin;
+}
+
+.wl-node {
+  background-color: $bgColor;
+  border: $fgColor 1px solid;
+  color: $fgColor;
+  font-size: medium;
+  font-weight: normal;
+  line-height: 1;
+  margin: 1px;
+  padding: $margin;
+}
+
+.wl-node.wl-no-frame {
+  border-style: none;
+  margin: 0;
+}
+
+.wl-horizontal > .wl-contents {
+  display: flex;
+}
+.wl-horizontal > .wl-contents > .wl-node {
+  flex-grow: 1;
+}
+
+.wl-node.wl-hidden {
+  /* display: contents; */
+  background-color: inherit;
+  border-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+.wl-hidden > .wl-label {
+  display: none;
+}
+
+.wl-special-1 {
+  background-color: mix($bgColor, $fgColor, 75%);
+  border-color: $fgColor;
+  color: $fgColor;
+}
+
+.wl-special-2 {
+  background-color: mix($bgColor, $fgColor, 25%);
+  border-color: $bgColor;
+  color: $bgColor;
+}
+
+.wl-alias {
+  opacity: 0.25;
+}

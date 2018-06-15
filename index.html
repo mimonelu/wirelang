@@ -1,0 +1,155 @@
+<html>
+  <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width">
+    <style>
+
+body {
+  margin: 16px;
+}
+.wl-level-2 {
+  min-width: 320px;
+  max-width: 320px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="wl-container"></div>
+    <script src="./wirelang.js"></script>
+    <script id="wl-scheme" type="text/template">
+-^Wire frame
+  :-^AppShell
+    -^all
+      +(header)
+      /:
+        +(sidebar)
+        +(contents)
+    -^header
+      +:
+        $sidebar-link:サイドバー開くボタン
+        title
+        $notification-link:通知ボタン
+          badge:通知バッジ
+    -^sidebar
+      +
+        :sidebar-header
+          :mini-profile
+            $user-thumbnail
+            user-name
+          $close-link:サイドバー閉じるボタン
+        game-list
+          :$item
+            thumbnail
+            /
+              name
+              tag
+                capacity:最大プレイ人数
+                genre
+          @
+        link-list
+          $announcement:お知らせリンク
+          $help:ヘルプページリンク
+          $inquiry:お問い合わせ※外部
+          $mobage:モバゲー※外部
+          $top page:トップページリンク
+  :-^Pages
+    -^top-page
+      +header
+      +contents
+        hero-area
+          carousel
+            item
+            $focus-item
+            item
+        contents-area
+          topic-list
+            $item
+            @
+    -^community-page
+      +header
+      +contents
+        topic-list
+          item
+            /:
+              $user-thumbnail
+              user-name
+              date:投稿日時
+              $remove-link:削除ボタン
+            text
+            $image-thumbnail:投稿画像
+            reaction-link-list:リアクションボタンリスト
+              :$reaction-link:リアクションボタン
+                icon
+                count
+          @
+        /:
+          $play-link:プレイボタン
+          $status-link:投稿ボタン
+    -^topic-page
+      +header
+      +contents
+        $back-link:戻るボタン
+        topic-list
+          item
+            /:
+              $user-thumbnail
+              user-name
+              date:投稿日時
+              $remove-link:削除ボタン
+            text
+            $image-thumbnail:投稿画像
+            reaction-link-list:リアクションボタンリスト
+              :$reaction-link:リアクションボタン
+                icon
+                count
+          @
+        $back-link:戻るボタン
+        /:
+          $play-link:プレイボタン
+          $status-link:投稿ボタン
+    -^announcement-page
+      +header
+      +contents
+        announcement-list
+          $item
+            /:
+              title
+              new-icon:新着アイコン
+              date:公開日時
+            text
+          @
+    -^help-page
+      +header
+      +contents
+        help-list
+          $item
+            /:
+              title
+            text
+          @
+  :-^Modals
+    -^game-modal
+      iframe
+      $close-link:非表示ボタン
+    -^notification-modal:通知一覧モーダル
+      :header
+        title:通知一覧
+        $close-link:通知一覧閉じるボタン
+      contents
+        notification-list
+          $item
+            /:
+              type:通知種別
+              user-thumbnail
+              title
+            /:
+              text
+              date:通知日時
+              image-thumbnail:投稿日時
+          @
+    </script>
+    <script>
+WireLang.run(document.querySelector('#wl-scheme').innerText, document.querySelector('.wl-container'), location.hash.substr(1))
+    </script>
+  </body>
+</html>
