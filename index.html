@@ -1,12 +1,15 @@
 <html>
   <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, width=device-width">
     <style>
 
-body {
-  margin: 16px;
+* {
+  margin: 0;
+  padding: 0;
 }
 .wl-level-2 {
+  margin: 0 auto !important;
   min-width: 320px;
   max-width: 320px;
 }
@@ -15,7 +18,7 @@ body {
   </head>
   <body>
     <div class="wl-container"></div>
-    <script src="./wirelang.js"></script>
+    <script src="https://mimonelu.github.io/wirelang/wirelang.js"></script>
     <script id="wl-scheme" type="text/template">
 -^Wire frame
   :-^AppShell
@@ -58,9 +61,13 @@ body {
       +contents
         hero-area
           carousel
-            item
-            $focus-item
-            item
+            :/
+              item
+              pager
+              $focus-item
+              pager
+              item
+            pagenation
         contents-area
           topic-list
             $item
@@ -144,8 +151,8 @@ body {
               title
             /:
               text
+              image-thumbnail
               date:通知日時
-              image-thumbnail:投稿日時
           @
     </script>
     <script>
