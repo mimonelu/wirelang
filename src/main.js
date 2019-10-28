@@ -71,19 +71,38 @@ global.WireLang = {
           for (let j = items[i].level - 1; j >= 0; j --) {
             if (parents[j] !== undefined) {
               current = parents[j].contents
-              break;
+              break
             }
           }
         }
         if (items[i].option.indexOf('@') !== - 1) {
-          items[i] = JSON.parse(JSON.stringify(parents[items[i].level]))
-          items[i].option += '@'
+          if (items[i].label === '') {
+            items[i] = JSON.parse(JSON.stringify(parents[items[i].level]))
+            items[i].option += '@'
+          } else {
+            const sameItems = items.filter(item => item.label === items[i].label)
+            if (sameItems.length > 0) {
+              const srcLevel = items[i].level
+              items[i] = JSON.parse(JSON.stringify(sameItems[0]))
+              items[i].option += '@'
+              this.traverseItem(items[i], srcLevel)
+            }
+          }
         }
       }
       parents[items[i].level] = items[i]
       current.push(items[i])
     }
     return results
+  },
+
+  traverseItem (item, level) {
+    item.level = Math.max(item.level, level)
+    if (item.contents.length > 0) {
+      item.contents.forEach(item => {
+        this.traverseItem(item, level + 1)
+      })
+    }
   },
 
   render (items, parentNode) {

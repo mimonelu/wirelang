@@ -5,6 +5,7 @@
   "author": "mimonelu",
   "license": "MIT",
   "scripts": {
+    "dev": "npx webpack --watch",
     "build": "npx webpack"
   },
   "devDependencies": {
